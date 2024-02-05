@@ -35,7 +35,9 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Calculator'),
+        title: Text('الآلة الحاسبة', style: TextStyle(
+          fontFamily: 'DGEnab',
+        ),),
         backgroundColor: Colors.black,
       ),
       body: Padding(

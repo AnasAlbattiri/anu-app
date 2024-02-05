@@ -1,9 +1,9 @@
-import 'package:anu_app/view/screens/home/gpa_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../utils/constants.dart';
 import '../home/calculator_screen.dart';
+import '../home/gpa_screen.dart';
 import '../home/record_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -49,7 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   )
               ),
               child: GridView.count(
-
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 crossAxisCount: 2,
@@ -58,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   InkWell(
                     onTap: (){
-                 Get.to(() => CalculatorScreen());
+                      Get.to(() => CalculatorScreen());
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -77,29 +76,27 @@ class _HomeScreenState extends State<HomeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset('assets/images/calculator.png', height: 45,),
-                          const SizedBox(height: 4,),
-                          const Text('CALCULATOR', style: TextStyle(
-                            fontFamily: 'Circular', color: Colors.black, fontSize: 14,
+                          Image.asset('assets/images/calculator.png', height: 55,),
+                          SizedBox(height: 4,),
+                          Text('الآلة الحاسبة', style: TextStyle(
+                            fontFamily: 'DGNemr', color: Colors.black, fontSize: 14,
                           ),)
                         ],
                       ),
                     ),
                   ),
-                  itemDashboard('التسجيل', CupertinoIcons.person, Colors.deepOrange,() => Get.to(RecordScreen()),
+                  itemDashboard('التسجيل', Image.asset('assets/images/record.jpeg', height: 55,), Colors.deepOrange,() => Get.to(RecordScreen()),
                   ),
-                  itemDashboard('حساب المعدل', CupertinoIcons.person_2, Colors.green, () => Get.to(GpaScreen()),
+                  itemDashboard('حساب المعدل التراكمي', Image.asset('assets/images/gpa.png', height: 55,), Colors.green, () => Get.to( GPACalculatorPage()),
                   ),
-                  itemDashboard('Analytics', CupertinoIcons.graph_circle, Colors.purple,()=> Get.to( RecordScreen()),
+                  itemDashboard('الأسئلة الأكثر شيوعاً', Image.asset('assets/images/faq.png', height: 55,), Colors.purple,()=> Get.to( RecordScreen()),
                   ),
-                  itemDashboard('About', CupertinoIcons.question_circle, Colors.blue,()=> Get.to( RecordScreen())),
-                  itemDashboard('Invoices', CupertinoIcons.money_dollar_circle, Colors.indigo,()=>Get.to( RecordScreen())
+                  itemDashboard('صفحة الجامعة', Image.asset('assets/images/facebook.png', height: 55,), Colors.blue,()=> Get.to( RecordScreen())),
+                  itemDashboard('المكتبة', Image.asset('assets/images/library.png', height: 55,), Colors.indigo,()=>Get.to( RecordScreen())
                   ),
-                  itemDashboard('Upload', CupertinoIcons.add_circled, Colors.teal, ()=>Get.to( RecordScreen())
+                  itemDashboard('Upload', Icon(CupertinoIcons.money_dollar_circle), Colors.teal, ()=>Get.to( RecordScreen())
                   ),
-                  itemDashboard('About', CupertinoIcons.question_circle, Colors.blue,()=>Get.to( RecordScreen())
-                  ),
-                  itemDashboard('Contact', CupertinoIcons.phone, Colors.pinkAccent, ()=>Get.to( RecordScreen())
+                  itemDashboard('About', Icon(CupertinoIcons.question_circle), Colors.blue,()=>Get.to( RecordScreen())
                   ),
                 ],
               ),
@@ -111,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     );
   }
-  itemDashboard(String title, IconData iconData, Color background , Function() onPressed) => InkWell(
+  itemDashboard(String title, Widget widget, Color background , Function() onPressed) => InkWell(
     onTap: onPressed,
     child: Container(
       decoration: BoxDecoration(
@@ -129,14 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: background,
-              shape: BoxShape.circle,
-            ),
-            child:  Icon(iconData, color: Colors.white),
-          ),
+          widget,
           const SizedBox(height: 8),
           Text(
             title.toUpperCase(),
@@ -151,3 +141,4 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
   );
 }
+

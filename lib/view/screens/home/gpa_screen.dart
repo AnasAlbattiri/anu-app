@@ -1,349 +1,325 @@
 import 'package:anu_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/auth/auth_text_form_field.dart';
+class GPACalculatorPage extends StatefulWidget {
+  @override
+  _GPACalculatorPageState createState() => _GPACalculatorPageState();
+}
 
-final gpaController = TextEditingController();
-final markController = TextEditingController();
-final ob1Controller = TextEditingController();
-final ob2Controller = TextEditingController();
-final ob3Controller = TextEditingController();
-final ob4Controller = TextEditingController();
-final ob5Controller = TextEditingController();
-final ob6Controller = TextEditingController();
-final ob7Controller = TextEditingController();
-
-final hr1Controller = TextEditingController();
-final hr2Controller = TextEditingController();
-final hr3Controller = TextEditingController();
-final hr4Controller = TextEditingController();
-final hr5Controller = TextEditingController();
-final hr6Controller = TextEditingController();
-final hr7Controller = TextEditingController();
-class GpaScreen extends StatelessWidget {
-  GpaScreen({super.key});
+class _GPACalculatorPageState extends State<GPACalculatorPage> {
+  final _previousCGPAController = TextEditingController();
+  final _totalPreviousCreditsController = TextEditingController();
+  final List<TextEditingController> _scoreControllers = [];
+  final List<TextEditingController> _creditControllers = [];
+  double _cumulativeGPA = 0.0;
+  int _courseCount = 0;
 
 
+  @override
+  void dispose() {
+    _previousCGPAController.dispose();
+    _totalPreviousCreditsController.dispose();
+    _scoreControllers.forEach((controller) => controller.dispose());
+    _creditControllers.forEach((controller) => controller.dispose());
+    super.dispose();
+  }
+
+  void _addCourse() {
+    setState(() {
+      _courseCount++;
+      _scoreControllers.add(TextEditingController());
+      _creditControllers.add(TextEditingController());
+    });
+  }
 
 
+  void _calculateGPA() {
+    final previousCGPA = double.tryParse(_previousCGPAController.text);
+    final totalPreviousCredits = int.tryParse(_totalPreviousCreditsController.text);
+    double totalScoreForCurrentSemester = 0.0;
+    int totalCreditsForCurrentSemester = 0;
+
+    if (previousCGPA == null || totalPreviousCredits == null) {
+      print('Previous CGPA or total previous credits are not entered correctly.');
+      return;
+    }
+
+    for (int i = 0; i < _scoreControllers.length; i++) {
+      final score = double.tryParse(_scoreControllers[i].text);
+      final credits = int.tryParse(_creditControllers[i].text);
+
+      if (score == null || credits == null || score < 10 || score > 100 || credits <= 0) {
+        print('Scores or credits for subject $i are not entered correctly.');
+        return; // Early return if any score or credit is invalid.
+      }
+
+      totalScoreForCurrentSemester += score * credits;
+      totalCreditsForCurrentSemester += credits;
+    }
+
+    // Calculate the cumulative GPA.
+    if (totalCreditsForCurrentSemester > 0) {
+      _cumulativeGPA = ((previousCGPA * totalPreviousCredits) + totalScoreForCurrentSemester) /
+          (totalPreviousCredits + totalCreditsForCurrentSemester);
+    }
+
+    setState(() {
+      print('Cumulative GPA calculated: $_cumulativeGPA');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('حساب المعدل',style: TextStyle(
-          fontFamily: 'DGEnab',
-        ),),
         backgroundColor: primaryColor,
+        title: Text('حساب المعدل التراكمي', style: TextStyle(
+          fontFamily: 'DGEnab',
+          fontSize: 18,
+        ),),
       ),
-      body: Stack(
-        children: [
-          Container(
-            color: primaryColor,
-            child: Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 100),
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(200),
-                  )),
-            ),
-          ),
-          SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  const SizedBox(height: 20.0),
-                  AuthTextFormField(
-                    textAlign: TextAlign.end,
-                    controller: gpaController,
-                    textInputType: TextInputType.number,
-                    isPassword: false,
-                    hint: 'ألمعدل قبل الفصل الحالي',
-                    hintStyle: const TextStyle(
-                      fontFamily: 'DGNemr',
-                    ),
-                  ),
-                  const SizedBox(height: 20.0),
-                  AuthTextFormField(
-                    textAlign: TextAlign.end,
-                    controller: markController,
-                    textInputType: TextInputType.number,
-                    isPassword: false,
-                    hint: 'عدد الساعات التي قطعتها قبل الفصل الحالي',
-                    hintStyle: const TextStyle(
-                      fontFamily: 'DGNemr',
-                    ),
-                  ),
-                  const SizedBox(height: 20.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        width: 150.0,
-                        child: AuthTextFormField(
-                          textAlign: TextAlign.end,
-                          controller: hr1Controller,
-                          textInputType: TextInputType.number,
-                          isPassword: false,
-                          hint: 'عدد الساعات',
-                          hintStyle: const TextStyle(
-                            fontFamily: 'DGNemr',
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 20.0,
-                      ),
-                      SizedBox(
-                        width: 150.0,
-                        child: AuthTextFormField(
-                          textAlign: TextAlign.end,
-                          controller: ob1Controller,
-                          textInputType: TextInputType.number,
-                          isPassword: false,
-                          hint: 'علامة المادة 1',
-                          hintStyle: const TextStyle(
-                            fontFamily: 'DGNemr',
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 15.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        width: 150.0,
-                        child: AuthTextFormField(
-                          textAlign: TextAlign.end,
-                          controller: hr2Controller,
-                          textInputType: TextInputType.number,
-                          isPassword: false,
-                          hint: 'عدد الساعات',
-                          hintStyle: const TextStyle(
-                            fontFamily: 'DGNemr',
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 20.0,
-                      ),
-                      SizedBox(
-                        width: 150.0,
-                        child: AuthTextFormField(
-                          textAlign: TextAlign.end,
-                          controller: ob2Controller,
-                          textInputType: TextInputType.number,
-                          isPassword: false,
-                          hint: 'علامة المادة 2',
-                          hintStyle: const TextStyle(
-                            fontFamily: 'DGNemr',
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 15.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        width: 150.0,
-                        child: AuthTextFormField(
-                          textAlign: TextAlign.end,
-                          controller: hr3Controller,
-                          textInputType: TextInputType.number,
-                          isPassword: false,
-                          hint: 'عدد الساعات',
-                          hintStyle: const TextStyle(
-                            fontFamily: 'DGNemr',
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 20.0,
-                      ),
-                      SizedBox(
-                        width: 150.0,
-                        child: AuthTextFormField(
-                          textAlign: TextAlign.end,
-                          controller: ob3Controller,
-                          textInputType: TextInputType.number,
-                          isPassword: false,
-                          hint: 'علامة المادة 3',
-                          hintStyle: const TextStyle(
-                            fontFamily: 'DGNemr',
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 15.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        width: 150.0,
-                        child: AuthTextFormField(
-                          textAlign: TextAlign.end,
-                          controller: hr4Controller,
-                          textInputType: TextInputType.number,
-                          isPassword: false,
-                          hint: 'عدد الساعات',
-                          hintStyle: const TextStyle(
-                            fontFamily: 'DGNemr',
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 20.0,
-                      ),
-                      SizedBox(
-                        width: 150.0,
-                        child: AuthTextFormField(
-                          textAlign: TextAlign.end,
-                          controller: ob4Controller,
-                          textInputType: TextInputType.number,
-                          isPassword: false,
-                          hint: 'علامة المادة 4',
-                          hintStyle: const TextStyle(
-                            fontFamily: 'DGNemr',
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 15.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        width: 150.0,
-                        child: AuthTextFormField(
-                          textAlign: TextAlign.end,
-                          controller: hr5Controller,
-                          textInputType: TextInputType.number,
-                          isPassword: false,
-                          hint: 'عدد الساعات',
-                          hintStyle: const TextStyle(
-                            fontFamily: 'DGNemr',
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 20.0,
-                      ),
-                      SizedBox(
-                        width: 150.0,
-                        child: AuthTextFormField(
-                          textAlign: TextAlign.end,
-                          controller: ob5Controller,
-                          textInputType: TextInputType.number,
-                          isPassword: false,
-                          hint: 'علامة المادة 5',
-                          hintStyle: const TextStyle(
-                            fontFamily: 'DGNemr',
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 15.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        width: 150.0,
-                        child: AuthTextFormField(
-                          textAlign: TextAlign.end,
-                          controller: hr6Controller,
-                          textInputType: TextInputType.number,
-                          isPassword: false,
-                          hint: 'عدد الساعات',
-                          hintStyle: const TextStyle(
-                            fontFamily: 'DGNemr',
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 20.0,
-                      ),
-                      SizedBox(
-                        width: 150.0,
-                        child: AuthTextFormField(
-                          textAlign: TextAlign.end,
-                          controller: ob6Controller,
-                          textInputType: TextInputType.number,
-                          isPassword: false,
-                          hint: 'علامة المادة 6',
-                          hintStyle: const TextStyle(
-                            fontFamily: 'DGNemr',
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 15.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        width: 150.0,
-                        child: AuthTextFormField(
-                          textAlign: TextAlign.end,
-                          controller: hr7Controller,
-                          textInputType: TextInputType.number,
-                          isPassword: false,
-                          hint: 'عدد الساعات',
-                          hintStyle: const TextStyle(
-                            fontFamily: 'DGNemr',
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 20.0,
-                      ),
-                      SizedBox(
-                        width: 150.0,
-                        child: AuthTextFormField(
-                          textAlign: TextAlign.end,
-                          controller: ob7Controller,
-                          textInputType: TextInputType.number,
-                          isPassword: false,
-                          hint: 'علامة المادة 7',
-                          hintStyle: const TextStyle(
-                            fontFamily: 'DGNemr',
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 15.0),
-                  SizedBox(
-                    width: 150.0,
-                    child: ElevatedButton(
-                        onPressed: () {
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              TextField(
+                controller: _previousCGPAController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'المعدل التراكمي السابق',
+                  labelStyle: TextStyle(
+                    fontFamily: 'DGNemr',
+                    fontSize: 14,
 
-                        },
-                        child:  const Text(
-                          'احسب معدلك',
-                          style: TextStyle(
-                            fontFamily: 'DGNemr',
+                  ),
+                  hintText: 'ادخل المعدل التراكمي السابق',
+                  fillColor: Colors.grey.shade200,
+                  filled: true,
+                  hintStyle: TextStyle(
+                    fontFamily: 'DGNemr',
+
+                    fontSize: 16,
+                    color: Colors.black45,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10,),
+              TextField(
+                controller: _totalPreviousCreditsController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'عدد الساعات السابقة',
+                  labelStyle: TextStyle(
+                    fontFamily: 'DGNemr',
+                    fontSize: 14,
+
+                  ),
+                  hintText: 'ادخل عدد الساعات السابقة',
+                  fillColor: Colors.grey.shade200,
+                  filled: true,
+                  hintStyle: TextStyle(
+                    fontFamily: 'DGNemr',
+
+                    fontSize: 16,
+                    color: Colors.black45,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+
+                ),
+              ),
+              ...List<Widget>.generate(5, (index) { // Assume 5 subjects.
+                _scoreControllers.add(TextEditingController());
+                _creditControllers.add(TextEditingController());
+                return Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextField(
+                          controller: _scoreControllers[index],
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            labelText: 'علامة المادة ${index + 1}',
+                            labelStyle: TextStyle(
+                              fontFamily: 'DGNemr',
+                              fontSize: 14,
+
+                            ),
+                            hintText: 'ادخل علامة المادة',
+                            fillColor: Colors.grey.shade200,
+                            filled: true,
+                            hintStyle: TextStyle(
+                              fontFamily: 'DGNemr',
+
+                              fontSize: 16,
+                              color: Colors.black45,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+
                           ),
                         ),
+                      ),
                     ),
-                  ),
-                ],
+                    SizedBox(width: 10), // Provide some spacing between text fields.
+                    Expanded(
+                      child: TextField(
+                        controller: _creditControllers[index],
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          labelText: 'ساعات المادة ${index + 1}',
+                          labelStyle: TextStyle(
+                            fontFamily: 'DGNemr',
+                            fontSize: 14,
+
+                          ),
+                          hintText: 'ادخل عدد الساعات',
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          hintStyle: TextStyle(
+                            fontFamily: 'DGNemr',
+
+                            fontSize: 16,
+                            color: Colors.black45,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              }),
+              SizedBox(height: 10,),
+              ElevatedButton(
+                onPressed: _addCourse, // Add Course button.
+                child: Text('أضف مادة', style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  fontFamily: 'DGNemr',
+
+                ),),
               ),
-            ),
+              SizedBox(height: 10,),
+              ElevatedButton(
+                onPressed: _calculateGPA,
+                child: Text('احسب المعدل التراكمي', style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  fontFamily: 'DGNemr',
+
+                ),),
+              ),
+              SizedBox(height: 10,),
+              Text(
+                'المعدل التراكمي: ${_cumulativeGPA.toStringAsFixed(2)}',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  fontFamily: 'DGNemr',
+
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
