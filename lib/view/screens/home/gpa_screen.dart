@@ -177,7 +177,7 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
 
                 ),
               ),
-              ...List<Widget>.generate(5, (index) { // Assume 5 subjects.
+              ...List<Widget>.generate(_courseCount, (index) { // Assume 5 subjects.
                 _scoreControllers.add(TextEditingController());
                 _creditControllers.add(TextEditingController());
                 return Row(

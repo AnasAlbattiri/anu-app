@@ -32,8 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 75),
                 ListTile(
                   contentPadding: EdgeInsets.symmetric(horizontal: 30),
-                  title: Text('Hello Student!', style: TextStyle(fontFamily: 'Circular', color: Colors.white, fontSize: 22),),
-                  subtitle: Text('Good Morning', style: TextStyle(fontFamily: 'Circular', color: Colors.white54, fontSize: 16),),
+                  title: Text('!مرحبا بك', style: TextStyle(fontFamily: 'DGNemr', color: Colors.white, fontSize: 24),),
+                  subtitle: Text('صباح الخير', style: TextStyle(fontFamily: 'DGNemr', color: Colors.white54, fontSize: 16),),
                 ),
               ],
             ),
@@ -93,10 +93,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   itemDashboard('صفحة الجامعة', Image.asset('assets/images/facebook.png', height: 55,), Colors.blue,()=> Get.to( RecordScreen())),
                   itemDashboard('المكتبة', Image.asset('assets/images/library.png', height: 55,), Colors.indigo,()=>Get.to( RecordScreen())
-                  ),
-                  itemDashboard('Upload', Icon(CupertinoIcons.money_dollar_circle), Colors.teal, ()=>Get.to( RecordScreen())
-                  ),
-                  itemDashboard('About', Icon(CupertinoIcons.question_circle), Colors.blue,()=>Get.to( RecordScreen())
                   ),
                 ],
               ),
