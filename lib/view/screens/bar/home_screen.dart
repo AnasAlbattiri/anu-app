@@ -1,3 +1,4 @@
+import 'package:anu_app/view/screens/home/gpa_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -87,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   itemDashboard('التسجيل', CupertinoIcons.person, Colors.deepOrange,() => Get.to(RecordScreen()),
                   ),
-                  itemDashboard('Inpatients', CupertinoIcons.person_2, Colors.green, () => Get.to( RecordScreen()),
+                  itemDashboard('حساب المعدل', CupertinoIcons.person_2, Colors.green, () => Get.to(GpaScreen()),
                   ),
                   itemDashboard('Analytics', CupertinoIcons.graph_circle, Colors.purple,()=> Get.to( RecordScreen()),
                   ),

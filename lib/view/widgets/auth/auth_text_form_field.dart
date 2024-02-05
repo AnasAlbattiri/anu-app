@@ -1,69 +1,87 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AuthTextFormField extends StatelessWidget {
-  const AuthTextFormField({
-    Key? key,
-    required this.controller,
-    required this.obscureText,
-    required this.textType,
-    required this.validator,
-    required this.prefixIcon,
-    required this.suffixIcon,
-    required this.hintText,
-  }) : super(key: key);
+import '../../../utils/constants.dart';
 
-  final TextEditingController controller;
-  final bool obscureText;
-  final TextInputType textType;
-  final Function validator;
-  final Widget prefixIcon;
-  final Widget suffixIcon;
-  final String hintText;
+
+class AuthTextFormField extends StatelessWidget {
+  final TextEditingController? controller;
+  final InputDecoration? decoration;
+  final bool isPassword;
+  final Color? suffixIconColor;
+  final Color? prefixIconColor;
+  final TextAlign textAlign ;
+  final TextInputType? textInputType;
+  final InputBorder? enabledBorderStyle;
+  final InputBorder? focusedBorderStyle;
+  final TextStyle? style;
+  final TextStyle? hintStyle;
+  final void Function(String)? onChange;
+  final void Function()? onTap;
+  final void Function()? suffixPressed;
+  final String hint;
+  final bool isClickable = true;
+  final Widget? prefix;
+  final Widget? suffix;
+  final dynamic validate;
+  const AuthTextFormField({
+    super.key,
+     this.controller,
+    this.decoration,
+    required this.isPassword,
+    this.suffixIconColor,
+    this.prefixIconColor,
+    this.enabledBorderStyle,
+    this.focusedBorderStyle,
+    this.style,
+    this.onChange,
+    this.onTap,
+    this.suffixPressed,
+    this.prefix,
+    this.suffix,
+    this.validate,
+    required this.hint,
+    this.hintStyle,
+    this.textInputType,
+    required this.textAlign,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textAlign: textAlign,
+      style: const TextStyle(
+        color: bColor,
+      ),
+      validator: validate,
       controller: controller,
-      obscureText: obscureText,
-      cursorColor: Get.isDarkMode ? Colors.white : Colors.black,
-      keyboardType: textType,
-      validator: (value) => validator(value),
+      obscureText: isPassword,
+      cursorColor: Colors.black,
+
+      keyboardType: textInputType,
       decoration: InputDecoration(
-        fillColor: Get.isDarkMode ? Colors.black : Colors.grey.shade200,
-        prefixIcon: prefixIcon,
-        suffixIcon: suffixIcon,
-        hintText: hintText,
-        hintStyle: TextStyle(
-          fontSize: 16,
-          color: Get.isDarkMode ? Colors.grey : Colors.black45,
-          fontWeight: FontWeight.w500,
-        ),
-        filled: true,
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.white,
-          ),
-          borderRadius: BorderRadius.circular(10),
-        ),
+        suffixIconColor: suffixIconColor,
+        prefixIconColor: prefixIconColor,
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.white,
-          ),
-          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: Colors.black,),
+          borderRadius: BorderRadius.circular(10.0),
         ),
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.white,
-          ),
-          borderRadius: BorderRadius.circular(10),
-        ),
+        enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.black),
+            borderRadius: BorderRadius.circular(10.0)),
+        errorBorder:   OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.black),
+            borderRadius: BorderRadius.circular(10.0)),
         focusedErrorBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.white,
-          ),
-          borderRadius: BorderRadius.circular(10),
-        ),
+            borderSide: const BorderSide(color: Colors.black),
+            borderRadius: BorderRadius.circular(10.0)),
+        prefixIcon: prefix,
+        suffixIcon: suffix,
+        hintText: hint,
+        hintStyle: hintStyle,
+        filled: true,
+        fillColor: Get.isDarkMode ? Colors.grey[400] :Colors.grey[200],
+        border: const OutlineInputBorder(),
       ),
     );
   }

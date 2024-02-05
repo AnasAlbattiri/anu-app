@@ -53,7 +53,6 @@ class RecordScreen extends StatelessWidget {
                         'خدمات الطالب', 'assets/images/services.jpg', ()=> launchUrl(studentServices)),
                   ],
                 ),
-
               ],
             ),
           ),
@@ -67,35 +66,33 @@ class RecordScreen extends StatelessWidget {
   itemDashboard(String title, String imageData, Function() onPressed) => InkWell(
    onTap: onPressed,
     enableFeedback: true,
-    child: Container(
-      child: Column(
-        children: [
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    offset: const Offset(0, 5),
-                    color: primaryColor.withOpacity(.2),
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                  ),
-                ],
-              ),
-              child: Image.asset(imageData),
+    child: Column(
+      children: [
+        Expanded(
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  offset: const Offset(0, 5),
+                  color: primaryColor.withOpacity(.2),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                ),
+              ],
             ),
+            child: Image.asset(imageData),
           ),
-          const SizedBox(height: 15.0,),
-          Text(title,style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontFamily: 'DGNemr',
-            fontSize: 15.0,
-          ),
-          ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 15.0,),
+        Text(title,style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontFamily: 'DGNemr',
+          fontSize: 15.0,
+        ),
+        ),
+      ],
     ),
   );
 
