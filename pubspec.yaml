@@ -76,6 +76,7 @@ flutter:
     - assets/RiveAssets/
     - assets/images/record.jpg
     - assets/PDF/feesPdf.pdf
+    - assets/images/calculator.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

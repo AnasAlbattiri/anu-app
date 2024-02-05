@@ -32,15 +32,10 @@ class _FeesScreenState extends State<FeesScreen> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Row(
-            children: [
-              Icon(Icons.monetization_on_outlined),
-              SizedBox(width: 10.0,),
-              Text('التخصصات والرسوم',style: TextStyle(
-                fontFamily: 'DGEnab',
-              ),),
-            ],
-          ),
+          title: const Text('PDF',style: TextStyle(
+            fontFamily: 'DGEnab',
+          ),),
+
           backgroundColor: primaryColor,
         ),
         body: isLoading
