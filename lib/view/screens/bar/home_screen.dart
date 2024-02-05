@@ -5,6 +5,8 @@ import '../../../utils/constants.dart';
 import '../home/calculator_screen.dart';
 import '../home/gpa_screen.dart';
 import '../home/record_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
+final Uri facebookPage = Uri.parse('https://web.facebook.com/Ajloun.un');
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -32,8 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 75),
                 ListTile(
                   contentPadding: EdgeInsets.symmetric(horizontal: 30),
-                  title: Text('!مرحبا بك', style: TextStyle(fontFamily: 'DGNemr', color: Colors.white, fontSize: 24),),
-                  subtitle: Text('صباح الخير', style: TextStyle(fontFamily: 'DGNemr', color: Colors.white54, fontSize: 16),),
+                  title: Text('Hello Student!', style: TextStyle(fontFamily: 'Circular', color: Colors.white, fontSize: 22),),
+                  subtitle: Text('Good Morning', style: TextStyle(fontFamily: 'Circular', color: Colors.white54, fontSize: 16),),
                 ),
               ],
             ),
@@ -77,8 +79,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset('assets/images/calculator.png', height: 55,),
-                          SizedBox(height: 4,),
-                          Text('الآلة الحاسبة', style: TextStyle(
+                          const SizedBox(height: 4,),
+                          const Text('الآلة الحاسبة', style: TextStyle(
                             fontFamily: 'DGNemr', color: Colors.black, fontSize: 14,
                           ),)
                         ],
@@ -87,11 +89,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   itemDashboard('التسجيل', Image.asset('assets/images/record.jpeg', height: 55,), Colors.deepOrange,() => Get.to(RecordScreen()),
                   ),
-                  itemDashboard('حساب المعدل التراكمي', Image.asset('assets/images/gpa.png', height: 55,), Colors.green, () => Get.to( GPACalculatorPage()),
+                  itemDashboard('حساب المعدل التراكمي', Image.asset('assets/images/gpa.png', height: 55,), Colors.green, () => Get.to( const GPACalculatorPage()),
                   ),
                   itemDashboard('الأسئلة الأكثر شيوعاً', Image.asset('assets/images/faq.png', height: 55,), Colors.purple,()=> Get.to( RecordScreen()),
                   ),
-                  itemDashboard('صفحة الجامعة', Image.asset('assets/images/facebook.png', height: 55,), Colors.blue,()=> Get.to( RecordScreen())),
+                  itemDashboard('صفحة الجامعة', Image.asset('assets/images/facebook.png', height: 55,), Colors.blue,()=> Get.to(launchUrl(facebookPage))),
                   itemDashboard('المكتبة', Image.asset('assets/images/library.png', height: 55,), Colors.indigo,()=>Get.to( RecordScreen())
                   ),
                 ],
@@ -137,4 +139,3 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
   );
 }
-
