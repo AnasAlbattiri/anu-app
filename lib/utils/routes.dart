@@ -23,8 +23,5 @@ class AppRoutes {
       name: '/home',
       page: () => HomeScreen(),
     ),
-
-
   ];
-
 }

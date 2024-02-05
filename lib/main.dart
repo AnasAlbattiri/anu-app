@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: TextButton.styleFrom(
             backgroundColor: primaryColor,
-            padding: EdgeInsets.all(defaultPadding),
+            padding: const EdgeInsets.all(defaultPadding),
           ),
         ),
         inputDecorationTheme: InputDecorationTheme(
