@@ -2,7 +2,7 @@ import 'package:anu_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'fees_screen.dart';
+import 'pdf_screen.dart';
 
 class RecordScreen extends StatelessWidget {
    RecordScreen({super.key});
@@ -45,7 +45,7 @@ class RecordScreen extends StatelessWidget {
                       'الجدول الدراسي', 'assets/images/schedule.jpg', () => launchUrl(studentSchedule),
                     ),
                     itemDashboard(
-                      'التخصصات والرسوم', 'assets/images/fees.jpg', () => Get.to(const FeesScreen()),
+                      'التخصصات والرسوم', 'assets/images/fees.jpg', () => Get.to(FeesScreen(path:'assets/PDF/feesPdf.pdf' ,)),
                     ),
                     itemDashboard(
                       'موقع التسجيل', 'assets/images/anu.jpg', ()=> launchUrl(anuUrl)),
