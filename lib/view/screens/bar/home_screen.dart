@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Image.asset('assets/images/calculator.png', height: 45,),
                           SizedBox(height: 4,),
-                          Text('آلة حاسبة', style: TextStyle(
+                          Text('الآلة الحاسبة', style: TextStyle(
                             fontFamily: 'DGNemr', color: Colors.black, fontSize: 14,
                           ),)
                         ],
