@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../utils/constants.dart';
+import '../home/calculator_screen.dart';
 import '../home/record_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -54,6 +55,36 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisSpacing: 40,
                 mainAxisSpacing: 30,
                 children: [
+                  InkWell(
+                    onTap: (){
+                      Get.to(() => CalculatorScreen());
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                                offset: const Offset(0, 5),
+                                color: Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(.2),
+                                spreadRadius: 2,
+                                blurRadius: 5)
+                          ]),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/images/calculator.png', height: 45,),
+                          SizedBox(height: 4,),
+                          Text('CALCULATOR', style: TextStyle(
+                            fontFamily: 'Circular', color: Colors.black, fontSize: 14,
+                          ),)
+                        ],
+                      ),
+                    ),
+                  ),
                   itemDashboard('التسجيل', CupertinoIcons.person, Colors.deepOrange,() => Get.to(RecordScreen()),
                   ),
                   itemDashboard('Inpatients', CupertinoIcons.person_2, Colors.green, () => Get.to( RecordScreen()),
