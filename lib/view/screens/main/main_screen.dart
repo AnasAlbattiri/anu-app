@@ -70,7 +70,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
         offset: Offset(0, 100 * animation.value),
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.only(bottom: 10,),
+            padding: const EdgeInsets.only(bottom: 10,),
             child: Container(
               padding: const EdgeInsets.only(left: 12, top: 12, right: 12, bottom: 12),
               margin: const EdgeInsets.symmetric(horizontal: 24),
