@@ -48,7 +48,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   )
               ),
               child: GridView.count(
-
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 crossAxisCount: 2,
@@ -78,8 +77,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Image.asset('assets/images/calculator.png', height: 45,),
                           SizedBox(height: 4,),
-                          Text('CALCULATOR', style: TextStyle(
-                            fontFamily: 'Circular', color: Colors.black, fontSize: 14,
+                          Text('آلة حاسبة', style: TextStyle(
+                            fontFamily: 'DGNemr', color: Colors.black, fontSize: 14,
                           ),)
                         ],
                       ),
@@ -97,8 +96,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemDashboard('Upload', CupertinoIcons.add_circled, Colors.teal, ()=>Get.to( RecordScreen())
                   ),
                   itemDashboard('About', CupertinoIcons.question_circle, Colors.blue,()=>Get.to( RecordScreen())
-                  ),
-                  itemDashboard('Contact', CupertinoIcons.phone, Colors.pinkAccent, ()=>Get.to( RecordScreen())
                   ),
                 ],
               ),
