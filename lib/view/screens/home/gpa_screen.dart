@@ -17,7 +17,6 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
   // ignore: unused_field
   int _courseCount = 1;
 
-
   @override
   void dispose() {
     _previousCGPAController.dispose();
@@ -39,16 +38,25 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
     });
   }
 
+  void _removeCourse() {
+    setState(() {
+      _courseCount--;
+      _scoreControllers.remove(TextEditingController());
+      _creditControllers.remove(TextEditingController());
+    });
+  }
 
   void _calculateGPA() {
     final previousCGPA = double.tryParse(_previousCGPAController.text);
-    final totalPreviousCredits = int.tryParse(_totalPreviousCreditsController.text);
+    final totalPreviousCredits =
+        int.tryParse(_totalPreviousCreditsController.text);
     double totalScoreForCurrentSemester = 0.0;
     int totalCreditsForCurrentSemester = 0;
 
     if (previousCGPA == null || totalPreviousCredits == null) {
       // ignore: avoid_print
-      print('Previous CGPA or total previous credits are not entered correctly.');
+      print(
+          'Previous CGPA or total previous credits are not entered correctly.');
       return;
     }
 
@@ -56,7 +64,11 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
       final score = double.tryParse(_scoreControllers[i].text);
       final credits = int.tryParse(_creditControllers[i].text);
 
-      if (score == null || credits == null || score < 10 || score > 100 || credits <= 0) {
+      if (score == null ||
+          credits == null ||
+          score < 10 ||
+          score > 100 ||
+          credits <= 0) {
         // ignore: avoid_print
         print('Scores or credits for subject $i are not entered correctly.');
         return; // Early return if any score or credit is invalid.
@@ -68,7 +80,8 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
 
     // Calculate the cumulative GPA.
     if (totalCreditsForCurrentSemester > 0) {
-      _cumulativeGPA = ((previousCGPA * totalPreviousCredits) + totalScoreForCurrentSemester) /
+      _cumulativeGPA = ((previousCGPA * totalPreviousCredits) +
+              totalScoreForCurrentSemester) /
           (totalPreviousCredits + totalCreditsForCurrentSemester);
     }
 
@@ -83,34 +96,37 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
-        title: const Text('حساب المعدل التراكمي', style: TextStyle(
-          fontFamily: 'DGEnab',
-          fontSize: 18,
-        ),),
+        title: const Text(
+          'حساب المعدل التراكمي',
+          style: TextStyle(
+            fontFamily: 'DGEnab',
+            fontSize: 18,
+          ),
+        ),
       ),
       body: Stack(
         children: [
-        Container(
-    color: primaryColor,
-    child: Container(
-    padding: const EdgeInsets.symmetric(horizontal: 30),
-    decoration: const BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.only(
-    topLeft: Radius.circular(200),
-    )
-    ),
-    ),
-        ),
+          Container(
+            color: primaryColor,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(200),
+                  )),
+            ),
+          ),
           SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(25.0),
               child: Column(
                 children: [
-                  const SizedBox(height: 20.0,),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
                   TextField(
                     cursorColor: Colors.black,
-
                     textAlign: TextAlign.end,
                     controller: _previousCGPAController,
                     keyboardType: TextInputType.number,
@@ -120,7 +136,6 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
                       filled: true,
                       hintStyle: const TextStyle(
                         fontFamily: 'DGNemr',
-
                         fontSize: 16,
                         color: Colors.black45,
                         fontWeight: FontWeight.w500,
@@ -155,7 +170,9 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   TextField(
                     cursorColor: Colors.black,
                     textAlign: TextAlign.end,
@@ -199,10 +216,10 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
                         ),
                         borderRadius: BorderRadius.circular(10),
                       ),
-
                     ),
                   ),
-                  ...List<Widget>.generate(_courseCount, (index) { // Assume 5 subjects.
+                  ...List<Widget>.generate(_courseCount, (index) {
+                    // Assume 5 subjects.
                     _scoreControllers.add(TextEditingController());
                     _creditControllers.add(TextEditingController());
                     return Padding(
@@ -225,13 +242,11 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
                                 labelStyle: const TextStyle(
                                   fontFamily: 'DGNemr',
                                   fontSize: 14,
-
                                 ),
                                 fillColor: Colors.grey.shade200,
                                 filled: true,
                                 hintStyle: const TextStyle(
                                   fontFamily: 'DGNemr',
-
                                   fontSize: 16,
                                   color: Colors.black45,
                                   fontWeight: FontWeight.w500,
@@ -264,11 +279,12 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
                                   ),
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-
                               ),
                             ),
                           ),
-                          const SizedBox(width: 10), // Provide some spacing between text fields.
+                          const SizedBox(
+                              width:
+                                  10), // Provide some spacing between text fields.
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -282,13 +298,11 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
                                   labelStyle: const TextStyle(
                                     fontFamily: 'DGNemr',
                                     fontSize: 14,
-
                                   ),
                                   fillColor: Colors.grey.shade200,
                                   filled: true,
                                   hintStyle: const TextStyle(
                                     fontFamily: 'DGNemr',
-
                                     fontSize: 16,
                                     color: Colors.black45,
                                     fontWeight: FontWeight.w500,
@@ -321,44 +335,67 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
                                     ),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
-
                                 ),
                               ),
                             ),
                           ),
-
                         ],
                       ),
                     );
                   }),
-                  const SizedBox(height: 10,),
-                  ElevatedButton(
-                    onPressed: _addCourse, // Add Course button.
-                    child: const Text('أضف مادة', style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      fontFamily: 'DGNemr',
-
-                    ),),
+                  const SizedBox(
+                    height: 10,
                   ),
-                  const SizedBox(height: 10,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: _addCourse, // Add Course button.
+                        child: const Text('أضف مادة', style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          fontFamily: 'DGNemr',
+
+                        ),),
+                      ),
+                      const SizedBox(
+                        width: 15.0,
+                      ),
+                      if (_courseCount > 0)
+                        ElevatedButton(
+                        onPressed: _removeCourse, // Add Course button.
+                        child: const Text('حذف مادة', style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          fontFamily: 'DGNemr',
+
+                        ),),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   ElevatedButton(
                     onPressed: _calculateGPA,
-                    child: const Text('احسب المعدل التراكمي', style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      fontFamily: 'DGNemr',
-
-                    ),),
+                    child: const Text(
+                      'احسب المعدل التراكمي',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        fontFamily: 'DGNemr',
+                      ),
+                    ),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Text(
                     'المعدل التراكمي: ${_cumulativeGPA.toStringAsFixed(2)}',
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 24,
                       fontFamily: 'DGNemr',
-
                     ),
                   ),
                 ],
