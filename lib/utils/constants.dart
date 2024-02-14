@@ -13,6 +13,31 @@ OutlineInputBorder textFieldBorder = OutlineInputBorder(
   ),
 );
 
+class ThemesApp {
+  static final light = ThemeData(
+    useMaterial3: false,
+    primarySwatch: Colors.blue,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: TextButton.styleFrom(
+        backgroundColor: primaryColor,
+        padding: const EdgeInsets.all(defaultPadding),
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      border: textFieldBorder,
+      enabledBorder: textFieldBorder,
+      focusedBorder: textFieldBorder,
+    ),
+
+  );
+
+  static final dark = ThemeData(
+    primaryColor: primaryColor,
+    backgroundColor: bColor,
+    brightness: Brightness.dark,
+  );
+}
+
 
 
 

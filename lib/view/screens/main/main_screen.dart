@@ -18,7 +18,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 
   // Variables
   final mainController = Get.put(MainController());
-  List<String> screens = ["Home", "Search", "Calender", "Notification", "Profile"];
+  List<String> screens = ["Home","Calender","Settings", "Profile"];
   bool isSideBarOpen = false;
   Menu selectedBottonNav = bottomNavItems.first;
   late AnimationController _animationController;
@@ -60,6 +60,8 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Get.isDarkMode ? Colors.black : wColor,
+
       body: Obx(
             () => IndexedStack(
           index: mainController.currentIndex.value,
@@ -73,7 +75,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
             padding: const EdgeInsets.only(bottom: 10,),
             child: Container(
               padding: const EdgeInsets.only(left: 12, top: 12, right: 12, bottom: 12),
-              margin: const EdgeInsets.symmetric(horizontal: 24),
+              margin: const EdgeInsets.symmetric(horizontal: 50),
               decoration: BoxDecoration(
                 color: primaryColor,
                 borderRadius: const BorderRadius.all(Radius.circular(24)),

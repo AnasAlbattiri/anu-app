@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../utils/constants.dart';
 
@@ -13,10 +14,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Get.isDarkMode ? bColor : wColor,
       appBar: AppBar(
         backgroundColor: primaryColor,
-        title: Text('Profile', style: TextStyle(fontFamily: 'Circular', color: wColor),),
-
+        title: const Text(
+          'Profile',
+          style: TextStyle(fontFamily: 'Circular', color: wColor),
+        ),
       ),
     );
   }

@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 2)).then((value) {
+    Future.delayed(const Duration(seconds: 2)).then((value) {
       Get.offNamed('/main');
     });
     super.initState();
@@ -23,8 +23,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: wColor,
+    return const Scaffold(
+      backgroundColor: Color(0xFFFBFBFB),
       body: SizedBox(
         // width: double.infinity,
         child: Column(

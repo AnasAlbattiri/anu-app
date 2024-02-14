@@ -1,9 +1,14 @@
+import 'package:anu_app/logic/main/theme_controller.dart';
 import 'package:anu_app/utils/constants.dart';
 import 'package:anu_app/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -15,23 +20,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'ANU App',
-      theme: ThemeData(
-        useMaterial3: false,
-        primarySwatch: Colors.blue,
-        textTheme: Theme.of(context).textTheme.apply(displayColor: textColor),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: TextButton.styleFrom(
-            backgroundColor: primaryColor,
-            padding: const EdgeInsets.all(defaultPadding),
-          ),
-        ),
-        inputDecorationTheme: InputDecorationTheme(
-          border: textFieldBorder,
-          enabledBorder: textFieldBorder,
-          focusedBorder: textFieldBorder,
-        ),
-
-      ),
+      darkTheme: ThemesApp.dark,
+      theme: ThemesApp.light,
+      themeMode: ThemeController().getThemeData,
       initialRoute: AppRoutes.splash,
       getPages: AppRoutes.routes,
     );

@@ -42,6 +42,7 @@ dependencies:
   rive: ^0.12.3
   url_launcher: ^6.2.4
   syncfusion_flutter_pdfviewer: ^24.2.3
+  get_storage: ^2.1.1
 
 
 
@@ -76,12 +77,99 @@ flutter:
     - assets/RiveAssets/
     - assets/images/record.jpg
     - assets/PDF/feesPdf.pdf
+    - assets/PDF/Calender.pdf
     - assets/images/gpa.png
     - assets/images/record.jpeg
     - assets/images/faq.png
     - assets/images/facebook.png
     - assets/images/library.png
-
+    - assets/images/zahi.jpg
+    - assets/images/mutasem.jpg
+    - assets/images/gazi.jpg
+    - assets/images/doctor.jpg
+    - assets/images/bajes2.jpg
+    - assets/images/elearn.png
+    - assets/images/moodle.jpg
+    - assets/images/teams.jpg
+    - assets/images/infoto.jpg
+    - assets/images/howto.jpg
+    - assets/images/whatsapp.jpg
+    - assets/images/itDoctors.jpg
+    - assets/images/AnuDoctors.jpg
+    - assets/images/mohamedBaniYounes.jpg
+    - assets/images/yaserAlsharee.jpg
+    - assets/images/amerAboJassar.jpg
+    - assets/images/Literature/AliKharabsheh.jpg
+    - assets/images/Literature/mansouralyasreh.png
+    - assets/images/Literature/abedalrahemmarashdeh.jpeg
+    - assets/images/Literature/muhanedaljabali.jpg
+    - assets/images/Literature/zuheraloroud.jpg
+    - assets/images/Literature/sameralzubi.jpg
+    - assets/images/Literature/amenlmaisah.jpg
+    - assets/images/Literature/mahmoudalsobh.jpg
+    - assets/images/Literature/khakedaljabli.jpg
+    - assets/images/Literature/mohamedalamirah.jpg
+    - assets/images/Literature/khaledshraidah.jpg
+    - assets/images/Literature/ahmedalqudah.jpg
+    - assets/images/Literature/alialobdi.jpg
+    - assets/images/Law/lawcolage.jpg
+    - assets/images/Law/mohamedfreihat.jpg
+    - assets/images/Law/ahmedbtoush.jpg
+    - assets/images/Law/mohamedbanymekdad.jpg
+    - assets/images/Law/talalalesa.jpg
+    - assets/images/Law/essalafismadi.jpg
+    - assets/images/Law/zyadalwashat.jpg
+    - assets/images/Law/muntaseralqudah.jpg
+    - assets/images/Law/drhashembls.jpg
+    - assets/images/Law/ahmedalamawi.jpg
+    - assets/images/Law/galebalsmailah.jpg
+    - assets/images/Law/salemalsawli.jpg
+    - assets/images/Law/dr.mamoonsmadi.jpg
+    - assets/images/Law/dr-tafweg.jpg
+    - assets/images/works/colageofwork.jpg
+    - assets/images/works/nedalalqudah.jpg
+    - assets/images/works/heshamshantawi.jpg
+    - assets/images/works/belalmatani.jpg
+    - assets/images/works/muhanedalebini.jpg
+    - assets/images/works/laithaleryan.jpg
+    - assets/images/works/dralialzubi.jpg
+    - assets/images/works/mohaidenabohol.jpg
+    - assets/images/works/khaledalomari.jpg
+    - assets/images/works/jorjshwakfah.jpg
+    - assets/images/works/mohamedjradat.jpg
+    - assets/images/works/mohamed_alqudah.jpg
+    - assets/images/works/mohamed_alzhoul.jpg
+    - assets/images/works/mohamedalmomani.jpg
+    - assets/images/works/kasemabued.jpg
+    - assets/images/works/khaleddebat.jpg
+    - assets/images/works/qadro_ashukri.jpg
+    - assets/images/works/hasenalwhshat.jpg
+    - assets/images/Engineering/CollegeofEngineering.jpg
+    - assets/images/itCollage.jpg
+    - assets/images/Engineering/ahmedfrehat2.jpg
+    - assets/images/Engineering/dr.ahmedsalameh.jpg
+    - assets/images/Engineering/dr.zyad-shbol.jpg
+    - assets/images/Science/science.jpg
+    - assets/images/Science/anasmasarwah.jpg
+    - assets/images/Science/abdalazez.png
+    - assets/images/Science/dr_hamazh-kasasbeh.jpg
+    - assets/images/Science/ali_alotoum.png
+    - assets/images/Science/mohamed_alhmori.jpeg
+    - assets/images/Educational Sciences/EducationalSciences.jpg
+    - assets/images/Agriculture/Agriculture.jpg
+    - assets/images/Educational Sciences/khaledalmomaniedu.jpg
+    - assets/images/Educational Sciences/amjaddradkh1.png
+    - assets/images/Educational Sciences/dr.mohamedalsadi.jpg
+    - assets/images/Educational Sciences/mosaabuzaiton.png
+    - assets/images/Educational Sciences/rabialzgoul.jpg
+    - assets/images/Educational Sciences/saleh_dradkah.png
+    - assets/images/Educational Sciences/fesalnwasrah.png
+    - assets/images/Educational Sciences/dr.brhan.jpg
+    - assets/images/Educational Sciences/khaledebedat.png
+    - assets/images/Educational Sciences/mohamedalomarita.jpg
+    - assets/images/Educational Sciences/nayafalwahshah.png
+    - assets/images/Agriculture/dribrahem.jpg
+    - assets/images/Agriculture/drorwah.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
@@ -100,11 +188,11 @@ flutter:
 
     - family: DGEnab
       fonts:
-       - asset: assets/fonts/DGEnab-Regular.ttf
+       - asset: assets/fonts/FFShamelFamily-SansOneBold.ttf
 
     - family: DGNemr
       fonts:
-      - asset: assets/fonts/DG-Nemr-V.0.ttf
+      - asset: assets/fonts/FFShamelFamily-SansOneBold.ttf
 
   #         style: italic
   #   - family: Trajan Pro
@@ -115,3 +203,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+assets/images/Engineering/CollegeofEngineering:
+  jpg:

@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-class FeesScreen extends StatelessWidget {
-   FeesScreen({super.key, required this.path,});
+class PdfScreen extends StatelessWidget {
+   PdfScreen({super.key, required this.path, required this.title,});
  final String path;
+ final String title;
  final controller = Get.put(PdfController());
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class FeesScreen extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: const Text('PDF',style: TextStyle(
+            title: Text(title,style: const TextStyle(
               fontFamily: 'DGEnab',
             ),),
 
