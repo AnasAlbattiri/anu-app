@@ -1,10 +1,8 @@
-import 'package:anu_app/logic/main/theme_controller.dart';
 import 'package:anu_app/utils/constants.dart';
 import 'package:anu_app/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'ANU App',
       darkTheme: ThemesApp.dark,
       theme: ThemesApp.light,
-      themeMode: ThemeController().getThemeData,
+      themeMode: ThemeMode.light,
       initialRoute: AppRoutes.splash,
       getPages: AppRoutes.routes,
     );

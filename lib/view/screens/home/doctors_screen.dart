@@ -9,9 +9,9 @@ import 'colage_doctors/agriculture_doctor_screen.dart';
 import 'colage_doctors/law_doctors_screen.dart';
 import 'colage_doctors/science_doctors_screen.dart';
 import 'colage_doctors/work_doctors_screen.dart';
+
 class DoctorsScreen extends StatelessWidget {
   const DoctorsScreen({super.key});
-
 
   @override
   Widget build(BuildContext context) {

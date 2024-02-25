@@ -16,7 +16,7 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
   final List<TextEditingController> _creditControllers = [];
   double _cumulativeGPA = 0.0;
   // ignore: unused_field
-  int _courseCount = 1;
+  int _courseCount = 4;
 
   @override
   void dispose() {
@@ -88,6 +88,7 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
     return Scaffold(
       backgroundColor: Get.isDarkMode ? bColor : wColor,
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: primaryColor,
         title: const Text(
           'حساب المعدل التراكمي',
@@ -249,19 +250,16 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
                                 ),
                                 cursorColor: Colors.black,
                                 textAlign: TextAlign.end,
+
                                 controller: _creditControllers[index],
                                 keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
-                                  labelText: 'ساعات المادة ${index + 1}',
-                                  labelStyle: const TextStyle(
-                                    fontFamily: 'DGNemr',
-                                    fontSize: 14,
-                                  ),
+                                  hintText: 'ساعات المادة ${index + 1}',
                                   fillColor: Colors.grey.shade200,
                                   filled: true,
                                   hintStyle: const TextStyle(
                                     fontFamily: 'DGNemr',
-                                    fontSize: 16,
+                                    fontSize: 12.0,
                                     color: Colors.black45,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -314,16 +312,13 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
                                   controller: _scoreControllers[index],
                                   keyboardType: TextInputType.number,
                                   decoration: InputDecoration(
-                                    labelText: 'علامة المادة ${index + 1}',
-                                    labelStyle: const TextStyle(
-                                      fontFamily: 'DGNemr',
-                                      fontSize: 14,
-                                    ),
+                                    hintText: 'علامة المادة ${index + 1}',
+
                                     fillColor: Colors.grey.shade200,
                                     filled: true,
                                     hintStyle: const TextStyle(
                                       fontFamily: 'DGNemr',
-                                      fontSize: 16,
+                                      fontSize: 12.0,
                                       color: Colors.black45,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -371,7 +366,7 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
                       children: [
                         ElevatedButton(
                           onPressed: _addCourse, // Add Course button.
-                          child:  Text('أضف مادة', style: TextStyle(
+                          child:  const Text('أضف مادة', style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
                             fontFamily: 'DGNemr',

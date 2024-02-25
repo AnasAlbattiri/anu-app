@@ -1,8 +1,8 @@
+import 'package:anu_app/view/screens/details/library_screen.dart';
 import 'package:anu_app/view/screens/home/e_learning_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../utils/constants.dart';
-import '../home/cafeteria_screen.dart';
 import '../home/calculator_screen.dart';
 import '../home/doctors_screen.dart';
 import '../home/faq_screen.dart';
@@ -13,15 +13,29 @@ import 'package:url_launcher/url_launcher.dart';
 final Uri facebookPage = Uri.parse('https://web.facebook.com/Ajloun.un');
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+   const HomeScreen({super.key});
 
-  @override
+   @override
   State<HomeScreen> createState() => _HomeScreenState();
+
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  String getGreeting() {
+    DateTime now = DateTime.now();
+    int currentHour = now.hour;
+    if (currentHour >= 0 && currentHour < 18) {
+      return 'صباح الخير';
+    } else {
+      return 'مساء الخير';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    String greeting = getGreeting();
+
     return Scaffold(
       backgroundColor: Get.isDarkMode ? bColor : wColor,
       body: ListView(
@@ -34,12 +48,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 bottomLeft: Radius.circular(50),
               ),
             ),
-            child: const Column(
+            child:  Column(
               children: [
-                SizedBox(height: 75),
+                const SizedBox(height: 75),
                 ListTile(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 30),
-                  title: Text(
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+                  title: const Text(
                     textAlign: TextAlign.right,
                     '!مرحبا بك',
                     style: TextStyle(
@@ -50,8 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   subtitle: Text(
                     textAlign: TextAlign.right,
-                    'صباح الخير',
-                    style: TextStyle(
+                    greeting,
+                    style: const TextStyle(
                         fontFamily: 'DGNemr',
                         color: Colors.white54,
                         fontSize: 16,
@@ -66,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               decoration: BoxDecoration(
-              color: Get.isDarkMode ? Colors.black : wColor,
+                  color: Get.isDarkMode ? bColor : wColor,
                   borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(200),
                   )),
@@ -93,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 55,
                     ),
                     Colors.deepOrange,
-                    () => Get.to(() => DoctorsScreen()),
+                    () => Get.to(() => const DoctorsScreen()),
                   ),
                   itemDashboard(
                     'التعليم الالكتروني',
@@ -160,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 55,
                     ),
                     Colors.purple,
-                    () => Get.to(() => FaqScreen()),
+                    () => Get.to(() =>const FaqScreen()),
                   ),
                   itemDashboard(
                       'صفحة الجامعة',
@@ -171,13 +185,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       Colors.blue,
                       () => Get.to(launchUrl(facebookPage))),
                   itemDashboard(
-                      'الكافيتيريا',
+                      'المكتبة الإلكترونية',
                       Image.asset(
                         'assets/images/library.png',
                         height: 55,
                       ),
                       Colors.indigo,
-                      () => Get.to(() => CafeteriaScreen())),
+                      () => Get.to(() =>  LibraryScreen())),
                 ],
               ),
             ),

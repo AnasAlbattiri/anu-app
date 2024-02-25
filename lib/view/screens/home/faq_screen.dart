@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/constants.dart';
+import '../../widgets/faq_list_widget.dart';
 
 class FaqScreen extends StatelessWidget {
   const FaqScreen({Key? key}) : super(key: key);
@@ -21,24 +22,7 @@ class FaqScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Stack(
-        children: [
-          Container(
-            color: primaryColor,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              decoration:  BoxDecoration(
-                color: Get.isDarkMode ? bColor : wColor,
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(200),
-                ),
-              ),
-            ),
-          ),
-
-          //TODO: ExpansionPanelList
-        ],
-      ),
+      body: expendableList(),
     );
   }
 }

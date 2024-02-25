@@ -18,7 +18,7 @@ class CollegeOfAgriculture {
 
 final softDocs = [
   CollegeOfAgriculture(
-    phone: '',
+    phone: 'لا يوجد',
     image: 'assets/images/Agriculture/dribrahem.jpg',
     title: 'د. ابراهيم الطاهات',
     education: '',
@@ -26,7 +26,7 @@ final softDocs = [
     about: 'رئيس قسم الإرشاد والتسويق الزراعي',
   ),
   CollegeOfAgriculture(
-      phone: '',
+      phone: 'لا يوجد',
       image: 'assets/images/Agriculture/drorwah.jpg',
       title: 'د. عروة الصليبي',
       education: '',

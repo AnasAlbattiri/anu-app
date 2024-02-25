@@ -30,7 +30,7 @@ class ELearningScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 30),
               decoration:  BoxDecoration(
                   color: Get.isDarkMode ? bColor : wColor,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(200),
                   )),
             ),

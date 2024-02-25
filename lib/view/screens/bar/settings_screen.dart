@@ -1,7 +1,9 @@
+import 'package:anu_app/view/screens/details/contact_us_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../logic/main/theme_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../utils/constants.dart';
+import '../on_boarding/on_boarding.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -11,20 +13,12 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  final Uri recordWeb = Uri.parse('http://92.253.124.162/faces/ui/pages/guest/admissionOnline/index.xhtml;jsessionid=ad6719af5ebe35a3dd9c653102ca');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Get.isDarkMode ? bColor : wColor,
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: (){
-            ThemeController().changeTheme();
-          },
-          icon: const Icon(
-            Icons.dark_mode_outlined,
-            color: Colors.white,
-          ),
-        ),
         centerTitle: true,
         backgroundColor: primaryColor,
         title: const Text(
@@ -43,7 +37,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     icon: const Icon(
                       Icons.arrow_back_ios_new,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.off(()=> const OnBoardingScreen());
+                    },
                   ),
                   const Spacer(),
                   const Column(
@@ -82,7 +78,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     icon: const Icon(
                       Icons.arrow_back_ios_new,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(()=> ContactUs());
+                    },
                   ),
                   const Spacer(),
                   const Column(
@@ -121,14 +119,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     icon: const Icon(
                       Icons.arrow_back_ios_new,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      launchUrl(recordWeb);
+                    },
                   ),
                   const Spacer(),
                   const Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        'قيم التطبيق',
+                        'تقديم طلب التحاق الكتروني',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontFamily: 'DGNemr',
@@ -136,7 +136,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                       ),
                       Text(
-                        'ادعمنا بتقييمك',
+                        'للتقديم الكتروناً',
                         style: TextStyle(
                             fontFamily: 'DGNemr',
                             fontSize: 10.0,
@@ -148,7 +148,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     width: 7.0,
                   ),
                   const Icon(
-                    Icons.star_border_outlined,
+                    Icons.request_page_outlined,
                     size: 30.0,
                   ),
 

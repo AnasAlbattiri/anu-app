@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import '../../../../utils/constants.dart';
 
 
@@ -16,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 2)).then((value) {
-      Get.offNamed('/main');
+     GetStorage().read<bool>('auth') == true ? Get.offNamed('/main') : Get.offNamed('/onBoard');
     });
     super.initState();
   }
@@ -24,21 +25,21 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Color(0xFFFBFBFB),
+      backgroundColor: primaryColor,
       body: SizedBox(
         // width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image(
-              image: AssetImage('assets/images/anu.jpg',),
-              height: 250,
-              width: 250,
+              image: AssetImage('assets/images/onBoarding/anuwW.png',),
+              height: 200,
+              width: 200,
             ),
             SizedBox(height: 30,),
             SpinKitThreeBounce(
-              color: primaryColor,
-              size: 50.0,
+              color: wColor,
+              size: 40.0,
             ),
           ],
         ),
