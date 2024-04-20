@@ -38,8 +38,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const Align(
                     alignment: Alignment.bottomCenter,
                     child: CircleAvatar(
-                      radius: 80.0,
-                      backgroundImage: AssetImage('assets/images/profile.png',),
+                      radius: 75.0,
+                      backgroundImage: AssetImage('assets/images/person.jpg',),
                       backgroundColor: wColor,
                     ),
                   ),
@@ -65,6 +65,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           'assets/images/pray.jpg',
                           () => Get.to(
                                 ()=>   TasbehScreen(),
+                            transition: Transition.fade,
+                            duration: Duration(milliseconds: 400),
                               ),
                           context),
                       itemDashboard(
@@ -72,6 +74,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           'assets/images/cafeteria.jpg',
                           () => Get.to(
                               ()=> CafeteriaScreen(),
+                            transition: Transition.fade,
+                            duration: Duration(milliseconds: 400),
                               ),
                           context),
                     ],

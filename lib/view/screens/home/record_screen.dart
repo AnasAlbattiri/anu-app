@@ -61,7 +61,7 @@ class RecordScreen extends StatelessWidget {
                     itemDashboard(
                       'التخصصات والرسوم',
                       'assets/images/fees.jpg',
-                      ()  =>  Get.to(PdfScreen()),
+                      ()  =>  Get.to(PdfScreen(), transition: Transition.fade, duration: Duration(milliseconds: 400,),),
                       context,
                     ),
                     itemDashboard('موقع التسجيل', 'assets/images/anu.jpg',

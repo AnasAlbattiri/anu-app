@@ -52,22 +52,22 @@ class DoctorsScreen extends StatelessWidget {
                     mainAxisSpacing: 30,
                     children: [
                       itemDashboard(
-                          'كلية تكنلوجيا المعلومات', 'assets/images/itCollage.jpg', () => Get.to(() => ItDoctorsScreen()),context),
+                          'كلية تكنلوجيا المعلومات', 'assets/images/itCollage.jpg', () => Get.to(() => ItDoctorsScreen(), transition: Transition.fade, duration: Duration(milliseconds: 400,),),context),
 
                       itemDashboard(
-                          'كلية الآداب', 'assets/images/AnuDoctors.jpg', () => Get.to(() => LiteratureDoctorsScreen()),context),
+                          'كلية الآداب', 'assets/images/AnuDoctors.jpg', () => Get.to(() => LiteratureDoctorsScreen(), transition: Transition.fade, duration: Duration(milliseconds: 400,),),context),
                       itemDashboard(
-                          'كلية القانون', 'assets/images/Law/lawcolage.jpg', () => Get.to(() => LawDoctorsScreen()),context),
+                          'كلية القانون', 'assets/images/Law/lawcolage.jpg', () => Get.to(() => LawDoctorsScreen(), transition: Transition.fade, duration: Duration(milliseconds: 400,),),context),
                       itemDashboard(
-                          'كلية الاعمال', 'assets/images/works/colageofwork.jpg', () => Get.to(() => WorksDoctorsScreen()),context),
+                          'كلية الاعمال', 'assets/images/works/colageofwork.jpg', () => Get.to(() => WorksDoctorsScreen(), transition: Transition.fade, duration: Duration(milliseconds: 400,),),context),
                       itemDashboard(
-                          'كلية الهندسة', 'assets/images/Engineering/CollegeofEngineering.jpg', () => Get.to(() => EngineeringDoctorsScreen()),context),
+                          'كلية الهندسة', 'assets/images/Engineering/CollegeofEngineering.jpg', () => Get.to(() => EngineeringDoctorsScreen(), transition: Transition.fade, duration: Duration(milliseconds: 400,),),context),
                       itemDashboard(
-                          'كلية العلوم', 'assets/images/Science/science.jpg', () => Get.to(() => ScienceDoctorsScreen()),context),
+                          'كلية العلوم', 'assets/images/Science/science.jpg', () => Get.to(() => ScienceDoctorsScreen(), transition: Transition.fade, duration: Duration(milliseconds: 400,),),context),
                       itemDashboard(
-                          'كلية العلوم التربوية', 'assets/images/Educational Sciences/EducationalSciences.jpg', () => Get.to(() => EducationalScienceDoctorsScreen()),context),
+                          'كلية العلوم التربوية', 'assets/images/Educational Sciences/EducationalSciences.jpg', () => Get.to(() => EducationalScienceDoctorsScreen(), transition: Transition.fade, duration: Duration(milliseconds: 400,),),context),
                       itemDashboard(
-                          'كلية الزراعة', 'assets/images/Agriculture/Agriculture.jpg', () => Get.to(() => AgricultureDoctorsScreen()),context),
+                          'كلية الزراعة', 'assets/images/Agriculture/Agriculture.jpg', () => Get.to(() => AgricultureDoctorsScreen(), transition: Transition.fade, duration: Duration(milliseconds: 400,),),context),
                     ],
                   ),
                 ],

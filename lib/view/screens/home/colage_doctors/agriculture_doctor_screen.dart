@@ -45,7 +45,7 @@ class AgricultureDoctorsScreen extends StatelessWidget {
                   IconButton(
                       onPressed: () {
                         Get.to(() => DoctorDetailsScreen(
-                            softwareDocsModel: softDoc));
+                            softwareDocsModel: softDoc), transition: Transition.fade, duration: Duration(milliseconds: 400,),);
                       },
                       icon: const Icon(
                         Icons.arrow_back_ios_new,

@@ -4,11 +4,31 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class DoctorDetailsScreen extends StatelessWidget {
+class DoctorDetailsScreen extends StatefulWidget {
   DoctorDetailsScreen({Key? key, required this.softwareDocsModel})
       : super(key: key);
   final dynamic softwareDocsModel;
+
+  @override
+  State<DoctorDetailsScreen> createState() => _DoctorDetailsScreenState();
+}
+
+class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
   final copyController = TextEditingController();
+  bool _isVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Trigger the animation after a delay
+    Future.delayed(Duration(milliseconds: 500), () {
+      setState(() {
+        _isVisible = true;
+      });
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final Uri uniNumber = Uri.parse('tel:(02) 646 6616');
@@ -21,14 +41,14 @@ class DoctorDetailsScreen extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               slivers: <Widget>[
                 SliverAppBar(
-                  expandedHeight: 450,
+                  expandedHeight: 440,
                   backgroundColor: Colors.black,
                   flexibleSpace: FlexibleSpaceBar(
                     collapseMode: CollapseMode.pin,
                     background: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage(softwareDocsModel.image),
+                          image: AssetImage(widget.softwareDocsModel.image),
                           fit: BoxFit.cover,
                         ),
                         color: primaryColor,
@@ -47,14 +67,19 @@ class DoctorDetailsScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
-                              Text(
-                                softwareDocsModel.title,
-                                textDirection: TextDirection.rtl,
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'DGNemr',
-                                    fontSize: 36),
+                              AnimatedOpacity(
+                                duration: Duration(milliseconds: 300),
+                                opacity: _isVisible ? 1.0 : 0.0,
+
+                                child: Text(
+                                  widget.softwareDocsModel.title,
+                                  textDirection: TextDirection.rtl,
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'DGNemr',
+                                      fontSize: 36),
+                                ),
                               ),
                             ],
                           ),
@@ -70,56 +95,80 @@ class DoctorDetailsScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
-                          const Text(
-                            "نبذة عن الدكتور",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'DGNemr',
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
+                          AnimatedOpacity(
+                            duration: Duration(milliseconds: 300),
+                            opacity: _isVisible ? 1.0 : 0.0,
+
+                            child: const Text(
+                              "نبذة عن الدكتور",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'DGNemr',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                           const SizedBox(
                             height: 10,
                           ),
-                          Text(
-                            softwareDocsModel.about,
-                            textDirection: TextDirection.rtl,
-                            style: const TextStyle(color: Colors.grey),
+                          AnimatedOpacity(
+                            duration: Duration(milliseconds: 300),
+                            opacity: _isVisible ? 1.0 : 0.0,
+
+                            child: Text(
+                              widget.softwareDocsModel.about,
+                              textDirection: TextDirection.rtl,
+                              style: const TextStyle(color: Colors.grey),
+                            ),
                           ),
                           const SizedBox(
                             height: 20,
                           ),
-                          const Text(
-                            "التخصص",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'DGNemr',
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
+                          AnimatedOpacity(
+                            duration: Duration(milliseconds: 300),
+                            opacity: _isVisible ? 1.0 : 0.0,
+
+                            child: const Text(
+                              "التخصص",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'DGNemr',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                           const SizedBox(
                             height: 10,
                           ),
-                          Text(
-                            softwareDocsModel.education,
-                            style: const TextStyle(color: Colors.grey),
+                          AnimatedOpacity(
+                            duration: Duration(milliseconds: 300),
+                            opacity: _isVisible ? 1.0 : 0.0,
+
+                            child: Text(
+                              widget.softwareDocsModel.education,
+                              style: const TextStyle(color: Colors.grey),
+                            ),
                           ),
                           const SizedBox(
                             height: 20,
                           ),
-                          const Text(
-                            "البريد الإلكتروني",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'DGNemr',
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
+                          AnimatedOpacity(
+                            duration: Duration(milliseconds: 300),
+                            opacity: _isVisible ? 1.0 : 0.0,
+                            child: const Text(
+                              "البريد الإلكتروني",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'DGNemr',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                           const SizedBox(
                             height: 10,
                           ),
                           Text(
-                            softwareDocsModel.email,
+                            widget.softwareDocsModel.email,
                             style: const TextStyle(color: Colors.grey),
                           ),
                           const SizedBox(
@@ -171,7 +220,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                                           // ignore: unnecessary_new
                                           TextFormField(
                                             controller: copyController
-                                              ..text = softwareDocsModel.phone,
+                                              ..text = widget.softwareDocsModel.phone,
                                             style: const TextStyle(
                                               fontSize: 20.0,
                                               fontFamily: 'DGEnab',

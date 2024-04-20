@@ -1,6 +1,8 @@
 import 'package:anu_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../widgets/animated_button.dart';
 var formKey = GlobalKey<FormState>();
 
 class GPACalculatorPage extends StatefulWidget {
@@ -394,24 +396,32 @@ class _GPACalculatorPageState extends State<GPACalculatorPage> {
                     const SizedBox(
                       height: 10,
                     ),
-                    ElevatedButton(
-                      onPressed:(){
+                    AnimatedButton(
+                      onPressed: () {
                         if(formKey.currentState!.validate())
-                          {
-                        _calculateGPA();
-                          }
-                      } ,
-                      child: const Text(
-                        'احسب المعدل التراكمي',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13,
-                          fontFamily: 'DGNemr',
-                          color: Colors.white,
+                        {
+                          _calculateGPA();
+                        }
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        decoration: BoxDecoration(
+                          color: primaryColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(
+                          'احسب المعدل التراكمي',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                            fontFamily: 'DGNemr',
+                            color: Colors.white,
 
+                          ),
                         ),
                       ),
                     ),
+
                     const SizedBox(
                       height: 10,
                     ),

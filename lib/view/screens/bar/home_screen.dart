@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 55,
                     ),
                     Colors.deepOrange,
-                    () => Get.to(() => RecordScreen()),
+                    () => Get.to(() => RecordScreen(), transition: Transition.fade, duration: Duration(milliseconds: 400,),),
                   ),
                   itemDashboard(
                     'الدكاترة',
@@ -107,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 55,
                     ),
                     Colors.deepOrange,
-                    () => Get.to(() => const DoctorsScreen()),
+                    () => Get.to(() => const DoctorsScreen(), transition: Transition.fade, duration: Duration(milliseconds: 400,),),
                   ),
                   itemDashboard(
                     'التعليم الالكتروني',
@@ -116,11 +116,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 55,
                     ),
                     Colors.deepOrange,
-                    () => Get.to(() => ELearningScreen()),
+                    () => Get.to(() => ELearningScreen(), transition: Transition.fade, duration: Duration(milliseconds: 400,),),
                   ),
                   InkWell(
                     onTap: () {
-                      Get.to(() => CalculatorScreen());
+                      Get.to(() => CalculatorScreen(), transition: Transition.fade, duration: Duration(milliseconds: 400,),);
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -165,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 55,
                     ),
                     Colors.green,
-                    () => Get.to(() => const GPACalculatorPage()),
+                    () => Get.to(() => const GPACalculatorPage(), transition: Transition.fade, duration: Duration(milliseconds: 400,),),
                   ),
                   itemDashboard(
                     'الأسئلة الأكثر شيوعاً',
@@ -174,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 55,
                     ),
                     Colors.purple,
-                    () => Get.to(() =>const FaqScreen()),
+                    () => Get.to(() =>const FaqScreen(), transition: Transition.fade, duration: Duration(milliseconds: 400,),),
                   ),
                   itemDashboard(
                       'صفحة الجامعة',
@@ -183,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 55,
                       ),
                       Colors.blue,
-                      () => Get.to(launchUrl(facebookPage))),
+                      () => Get.to(launchUrl(facebookPage), transition: Transition.fade, duration: Duration(milliseconds: 400,),), ),
                   itemDashboard(
                       'المكتبة الإلكترونية',
                       Image.asset(
@@ -191,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 55,
                       ),
                       Colors.indigo,
-                      () => Get.to(() =>  LibraryScreen())),
+                      () => Get.to(() =>  LibraryScreen(), transition: Transition.fade, duration: Duration(milliseconds: 400,),)),
                 ],
               ),
             ),

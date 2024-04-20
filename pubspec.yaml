@@ -51,6 +51,7 @@ dependencies:
 
 
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -198,6 +199,7 @@ flutter:
     - assets/images/library2.jpg
     - assets/images/library3.jpg
     - assets/images/profile.jpg
+    - assets/images/person.jpg
     - assets/images/whatsapp.png
     - assets/PDF/buss.pdf
 
